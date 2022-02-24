@@ -17,6 +17,10 @@ public class User {
     @Column(name = "name")
     private String name;
 
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<GroceryList> groceryLists;
+
     public User(Long userId, String name) {
         this.userId = userId;
         this.name = name;
@@ -39,6 +43,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<GroceryList> getGroceryLists() {
+        return groceryLists;
+    }
+
+    public void setGroceryLists(List<GroceryList> groceryLists) {
+        this.groceryLists = groceryLists;
     }
 
     @Override
