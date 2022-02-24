@@ -29,4 +29,10 @@ public class UserController {
         System.out.println("calling createUser");
         return userService.createUser(userObject);
     }
+
+    @DeleteMapping("/user/{userId}")   // url -> http://localhost:9092/api/user/userId
+    public User deleteUser(@PathVariable Long userId) {
+        System.out.println("calling deleteUser");
+        return userService.deleteUser(userId);
+    }
 }
