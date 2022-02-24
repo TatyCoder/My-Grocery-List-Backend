@@ -33,6 +33,15 @@ public class UserService {
         }
     }
 
+    public Optional<User> getUser(Long userId) {
+        Optional<User> user = this.userRepository.findById(userId);
+        if (user.isPresent()) {
+            return user;
+        } else {
+            throw new InformationNotFoundException("user with id " + userId + " not found.");
+        }
+    }
+
     public User deleteUser(Long userId) {
         Optional<User> optionalObject = this.userRepository.findById(userId);
         if (optionalObject.isPresent()) {
