@@ -5,6 +5,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "grocery_list")
@@ -23,9 +24,9 @@ public class GroceryList {
     @JsonIgnore
     private User user;
 
- //   @OneToMany(mappedBy = "grocery_list")
- //   @LazyCollection(LazyCollectionOption.FALSE)
-
+    @OneToMany(mappedBy = "groceryList", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Item> items;
 
     public GroceryList(Long groceryListId, String name) {
         this.groceryListId = groceryListId;
