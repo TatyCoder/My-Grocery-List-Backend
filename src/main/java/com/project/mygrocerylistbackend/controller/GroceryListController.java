@@ -26,9 +26,9 @@ public class GroceryListController {
     }
 
     @PostMapping("/user/{userId}/groceryList")   // url -> http://localhost:9092/api/user/userId/groceryList
-    public GroceryList createGroceryList(@RequestBody GroceryList groceryListObject) {
+    public GroceryList createGroceryList(@PathVariable Long userId, @RequestBody GroceryList groceryListObject) {
         System.out.println("calling createGroceryList");
-        return groceryListService.createGroceryList(groceryListObject);
+        return groceryListService.createGroceryList(userId, groceryListObject);
     }
 
 }
