@@ -1,5 +1,9 @@
 package com.project.mygrocerylistbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,13 +18,18 @@ public class GroceryList {
     @Column(name = "name")
     private String name;
 
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    private Long userId;
+    @JsonIgnore
+    private User user;
 
-    public GroceryList(Long groceryListId, String name, Long userId) {
+ //   @OneToMany(mappedBy = "grocery_list")
+ //   @LazyCollection(LazyCollectionOption.FALSE)
+
+
+    public GroceryList(Long groceryListId, String name) {
         this.groceryListId = groceryListId;
         this.name = name;
-        this.userId = userId;
     }
 
     public GroceryList() {
@@ -42,12 +51,12 @@ public class GroceryList {
         this.name = name;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -55,7 +64,6 @@ public class GroceryList {
         return "GroceryList{" +
                 "groceryListId=" + groceryListId +
                 ", name='" + name + '\'' +
-                ", userId=" + userId +
                 '}';
     }
 }
