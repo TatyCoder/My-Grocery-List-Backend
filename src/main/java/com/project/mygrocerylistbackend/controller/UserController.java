@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api")   // url -> http://localhost:9092/api
@@ -28,6 +29,12 @@ public class UserController {
     public User createUser(@RequestBody User userObject) {
         System.out.println("calling createUser");
         return userService.createUser(userObject);
+    }
+
+    @GetMapping("/user/{userId}")   // url -> http://localhost:9092/api/user/userId
+    public Optional<User> getUser(@PathVariable Long userId) {
+        System.out.println("calling getUser");
+        return userService.getUser(userId);
     }
 
     @DeleteMapping("/user/{userId}")   // url -> http://localhost:9092/api/user/userId
