@@ -31,4 +31,10 @@ public class GroceryListController {
         return groceryListService.createGroceryList(userId, groceryListObject);
     }
 
+    @GetMapping("/user/{userId}/groceryList/{groceryListId}")   // url -> http://localhost:9092/api/user/userId/groceryList/groceryListId
+    public List<GroceryList> getGroceryList(@PathVariable Long userId, @PathVariable Long groceryListId) {
+        System.out.println("calling getGroceryList");
+        return groceryListService.getGroceryList(userId, groceryListId);
+    }
+
 }
