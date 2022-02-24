@@ -1,6 +1,10 @@
 package com.project.mygrocerylistbackend.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -12,6 +16,10 @@ public class Category {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "category", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Item> items;
 
     public Category(Long categoryId, String name) {
         this.categoryId = categoryId;
