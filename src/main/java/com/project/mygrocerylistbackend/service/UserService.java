@@ -1,6 +1,7 @@
 package com.project.mygrocerylistbackend.service;
 
 import com.project.mygrocerylistbackend.exceptions.InformationExistException;
+import com.project.mygrocerylistbackend.exceptions.InformationNotFoundException;
 import com.project.mygrocerylistbackend.model.User;
 import com.project.mygrocerylistbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,17 @@ public class UserService {
             throw new InformationExistException("user with name " + user.getName() + " already exists.");
         } else {
             return userRepository.save(userObject);
+        }
+    }
+
+    public User deleteUser(Long userId) {
+        Optional<User> optionalObject = this.userRepository.findById(userId);
+        if (optionalObject.isPresent()) {
+            User user = optionalObject.get();
+            userRepository.delete(user);
+            return user;
+        } else {
+            throw new InformationNotFoundException("user with id " + userId + " not found.");
         }
     }
 
