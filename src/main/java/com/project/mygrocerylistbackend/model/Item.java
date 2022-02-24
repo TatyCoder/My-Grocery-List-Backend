@@ -1,5 +1,7 @@
 package com.project.mygrocerylistbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,19 +21,21 @@ public class Item {
     @Column(name = "quantity")
     private Integer quantity;
 
+    @ManyToOne
     @JoinColumn(name = "grocery_list_id")
-    private Long groceryListId;
+    @JsonIgnore
+    private GroceryList groceryList;
 
+    @ManyToOne
     @JoinColumn(name = "category_id")
-    private Long categoryId;
+    @JsonIgnore
+    private Category category;
 
-    public Item(Long itemId, String name, String description, Integer quantity, Long groceryListId, Long categoryId) {
+    public Item(Long itemId, String name, String description, Integer quantity) {
         this.itemId = itemId;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
-        this.groceryListId = groceryListId;
-        this.categoryId = categoryId;
     }
 
     public Item() {
@@ -69,22 +73,6 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public Long getGroceryListId() {
-        return groceryListId;
-    }
-
-    public void setGroceryListId(Long groceryListId) {
-        this.groceryListId = groceryListId;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
     @Override
     public String toString() {
         return "Item{" +
@@ -92,8 +80,6 @@ public class Item {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
-                ", groceryListId=" + groceryListId +
-                ", categoryId=" + categoryId +
                 '}';
     }
 }
