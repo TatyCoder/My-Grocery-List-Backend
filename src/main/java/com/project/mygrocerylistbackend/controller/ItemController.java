@@ -16,10 +16,16 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @PostMapping("/user/{userId}/groceryList/{groceryListId}/item")   // url -> http://localhost:9092/api/user/userId/groceryList/groceryListId
+    @PostMapping("/user/{userId}/groceryList/{groceryListId}/item")   // url -> http://localhost:9092/api/user/userId/groceryList/groceryListId/item
     public Item createItem(@PathVariable Long userId, @PathVariable Long groceryListId, @RequestBody Item itemObject) {
         System.out.println("calling createItem");
         return itemService.createItem(userId, groceryListId, itemObject);
+    }
+
+    @DeleteMapping("/user/{userId}/groceryList/{groceryListId}/item/{itemId}")   // url -> http://localhost:9092/api/user/userId/groceryList/groceryListId/item/itemId
+    public Item deleteItem(@PathVariable Long userId, @PathVariable Long groceryListId, @PathVariable Long itemId) {
+        System.out.println("calling deleteItem");
+        return itemService.deleteItem(userId, groceryListId, itemId);
     }
 
 }
