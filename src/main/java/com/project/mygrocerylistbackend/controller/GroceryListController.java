@@ -1,7 +1,6 @@
 package com.project.mygrocerylistbackend.controller;
 
 import com.project.mygrocerylistbackend.model.GroceryList;
-import com.project.mygrocerylistbackend.model.User;
 import com.project.mygrocerylistbackend.service.GroceryListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
