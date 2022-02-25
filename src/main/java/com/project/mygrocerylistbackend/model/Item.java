@@ -73,6 +73,22 @@ public class Item {
         this.quantity = quantity;
     }
 
+    public GroceryList getGroceryList() {
+        return groceryList;
+    }
+
+    public void setGroceryList(GroceryList groceryList) {
+        this.groceryList = groceryList;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
