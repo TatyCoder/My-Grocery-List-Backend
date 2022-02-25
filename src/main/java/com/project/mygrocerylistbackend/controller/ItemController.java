@@ -22,6 +22,12 @@ public class ItemController {
         return itemService.createItem(userId, groceryListId, itemObject);
     }
 
+    @GetMapping("/user/{userId}/groceryList/{groceryListId}/item/{itemId}")   // url -> http://localhost:9092/api/user/userId/groceryList/groceryListId/item/itemId
+    public Item getItem(@PathVariable Long userId, @PathVariable Long groceryListId, @PathVariable Long itemId) {
+        System.out.println("calling getItem");
+        return itemService.getItem(userId, groceryListId, itemId);
+    }
+
     @DeleteMapping("/user/{userId}/groceryList/{groceryListId}/item/{itemId}")   // url -> http://localhost:9092/api/user/userId/groceryList/groceryListId/item/itemId
     public Item deleteItem(@PathVariable Long userId, @PathVariable Long groceryListId, @PathVariable Long itemId) {
         System.out.println("calling deleteItem");
