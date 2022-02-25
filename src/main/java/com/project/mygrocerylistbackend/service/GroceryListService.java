@@ -56,4 +56,15 @@ public class GroceryListService {
         }
     }
 
+    public GroceryList deleteGroceryList(Long userId, Long groceryListId) {
+        User user = userService.getUser(userId).get();
+        GroceryList groceryList = groceryListRepository.getGroceryListByUserAndGroceryListId(user, groceryListId);
+        if (groceryList != null) {
+            groceryListRepository.delete(groceryList);
+            return groceryList;
+        } else {
+            throw new InformationNotFoundException("groceryList with id " + groceryListId + " not found.");
+        }
+    }
+
 }

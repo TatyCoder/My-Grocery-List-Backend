@@ -37,7 +37,7 @@ public class GroceryListController {
         return groceryListService.getGroceryList(userId, groceryListId);
     }
 
-    @GetMapping("/user/{userId}/groceryList/{groceryListId}")   // url -> http://localhost:9092/api/user/userId/groceryList/groceryListId
+    @DeleteMapping("/user/{userId}/groceryList/{groceryListId}")   // url -> http://localhost:9092/api/user/userId/groceryList/groceryListId
     public GroceryList deleteGroceryList(@PathVariable Long userId, @PathVariable Long groceryListId) {
         System.out.println("calling deleteGroceryList");
         return groceryListService.deleteGroceryList(userId, groceryListId);
