@@ -11,4 +11,6 @@ public interface GroceryListRepository extends JpaRepository<GroceryList, Long> 
     GroceryList getGroceryListByUserAndName(User user, String name);
 
     List<GroceryList> getAllGroceryListsByUser(User user);
+
+    GroceryList getGroceryListByUserAndGroceryListId(User user, Long groceryListId);
 }

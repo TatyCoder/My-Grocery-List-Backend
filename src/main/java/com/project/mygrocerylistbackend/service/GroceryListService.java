@@ -1,6 +1,7 @@
 package com.project.mygrocerylistbackend.service;
 
 import com.project.mygrocerylistbackend.exceptions.InformationExistException;
+import com.project.mygrocerylistbackend.exceptions.InformationNotFoundException;
 import com.project.mygrocerylistbackend.model.GroceryList;
 import com.project.mygrocerylistbackend.model.User;
 import com.project.mygrocerylistbackend.repository.GroceryListRepository;
@@ -44,4 +45,15 @@ public class GroceryListService {
             throw new InformationExistException("GroceryList " + groceryListObject.getName() + " already exists.");
         }
     }
+
+    public GroceryList getGroceryList(Long userId, Long groceryListId) {
+        User user = userService.getUser(userId).get();
+        GroceryList groceryList = groceryListRepository.getGroceryListByUserAndGroceryListId(user, groceryListId);
+        if (groceryList != null) {
+            return groceryList;
+        } else {
+            throw new InformationNotFoundException("groceryList with id " + groceryListId + " not found.");
+        }
+    }
+
 }
