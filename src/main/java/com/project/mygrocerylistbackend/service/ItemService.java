@@ -1,6 +1,7 @@
 package com.project.mygrocerylistbackend.service;
 
 import com.project.mygrocerylistbackend.exceptions.InformationExistException;
+import com.project.mygrocerylistbackend.exceptions.InformationNotFoundException;
 import com.project.mygrocerylistbackend.model.GroceryList;
 import com.project.mygrocerylistbackend.model.Item;
 import com.project.mygrocerylistbackend.repository.ItemRepository;
@@ -24,7 +25,7 @@ public class ItemService {
     }
 
     public Item createItem(Long userId, Long groceryListId, Item itemObject) {
-//        Is calling getGroceryList() from GroceryService.
+    //  This is calling getGroceryList() from GroceryService.
         GroceryList groceryList = groceryListService.getGroceryList(userId, groceryListId);
         Item item = itemRepository.getItemByGroceryList(groceryList);
         if (item == null) {
@@ -32,6 +33,18 @@ public class ItemService {
             return itemRepository.save(itemObject);
         } else {
             throw new InformationExistException("item " + itemObject.getName() + " already exists.");
+        }
+    }
+
+    public Item deleteItem(Long userId, Long groceryListId, Long itemId) {
+        //  This is calling getGroceryList() from GroceryService.
+        GroceryList groceryList = groceryListService.getGroceryList(userId, groceryListId);
+        Item item = itemRepository.getItemByGroceryListAndItemId(groceryList, itemId);
+        if (item != null) {
+            itemRepository.delete(item);
+            return item;
+        } else {
+            throw new InformationNotFoundException("item with id " + itemId + " not found.");
         }
     }
 
