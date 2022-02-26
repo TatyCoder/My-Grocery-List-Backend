@@ -32,6 +32,15 @@ public class CategoryService {
         }
     }
 
+    public Category getCategoryById(Long categoryId) {
+        Category category = categoryRepository.getCategoryByCategoryId(categoryId);
+        if (category != null) {
+            return category;
+        } else {
+            throw new InformationNotFoundException("category with id " + categoryId + " not found.");
+        }
+    }
+
     public Category getCategory(Long userId, Long groceryListId, Long itemId, Long categoryId) {
         // This is calling getItem() from ItemService.
         Item item = itemService.getItem(userId, groceryListId, itemId);

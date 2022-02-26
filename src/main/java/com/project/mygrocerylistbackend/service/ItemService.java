@@ -33,7 +33,7 @@ public class ItemService {
         this.categoryService = categoryService;
     }
 
-    public Item createItem(Long userId, Long groceryListId, Item itemObject, String categoryName) {
+    public Item createItem(Long userId, Long groceryListId, Item itemObject, Long categoryId) {
         // This is calling getGroceryList() from GroceryService.
         GroceryList groceryList = groceryListService.getGroceryList(userId, groceryListId);
         List<Item> items = itemRepository.getItemsByGroceryList(groceryList);
@@ -48,7 +48,7 @@ public class ItemService {
         //  Long count = items.stream().filter( i -> i.getName().equals(itemObject.getName())).count();
         if (count == 0) {
             itemObject.setGroceryList(groceryList);
-            itemObject.setCategory(categoryService.getCategoryByName(categoryName));
+            itemObject.setCategory(categoryService.getCategoryById(categoryId));
             return itemRepository.save(itemObject);
         } else {
             throw new InformationExistException("item " + itemObject.getName() + " already exists.");
