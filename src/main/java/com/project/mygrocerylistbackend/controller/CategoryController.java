@@ -19,6 +19,12 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    @GetMapping()
+    public Category getAllCategories() {
+        System.out.println("calling getAllCategories");
+        return categoryService.getAllCategories();
+    }
+
     @GetMapping("/user/{userId}/groceryList/{groceryListId}/item/{itemId}/category/{categoryId}")   // url -> http://localhost:9092/api/user/userId/groceryList/groceryListId/item/itemId/category/categoryId
     public Category getCategory(@PathVariable Long userId, @PathVariable Long groceryListId, @PathVariable Long itemId, @PathVariable Long categoryId) {
         System.out.println("calling getCategory");
