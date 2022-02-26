@@ -16,7 +16,7 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @PostMapping("/user/{userId}/groceryList/{groceryListId}/item/{categoryId}")   // url -> http://localhost:9092/api/user/userId/groceryList/groceryListId/item/categoryId
+    @PostMapping("/user/{userId}/groceryList/{groceryListId}/category/{categoryId}")   // url -> http://localhost:9092/api/user/userId/groceryList/groceryListId/category/categoryId
     public Item createItem(@PathVariable Long userId, @PathVariable Long groceryListId, @RequestBody Item itemObject, @PathVariable Long categoryId) {
         System.out.println("calling createItem");
         return itemService.createItem(userId, groceryListId, itemObject, categoryId);
