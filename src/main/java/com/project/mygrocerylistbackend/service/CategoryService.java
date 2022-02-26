@@ -23,6 +23,15 @@ public class CategoryService {
         this.itemService = itemService;
     }
 
+    public Category getCategoryByName(String categoryName) {
+        Category category = categoryRepository.getCategoryByName(categoryName);
+        if (category != null) {
+            return category;
+        } else {
+            throw new InformationNotFoundException("category with name " + categoryName + " not found.");
+        }
+    }
+
     public Category getCategory(Long userId, Long groceryListId, Long itemId, Long categoryId) {
         // This is calling getItem() from ItemService.
         Item item = itemService.getItem(userId, groceryListId, itemId);
