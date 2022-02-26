@@ -7,6 +7,8 @@ import com.project.mygrocerylistbackend.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoryService {
     private CategoryRepository categoryRepository;
@@ -23,13 +25,9 @@ public class CategoryService {
         this.itemService = itemService;
     }
 
-    public Category getCategoryByName(String categoryName) {
-        Category category = categoryRepository.getCategoryByName(categoryName);
-        if (category != null) {
-            return category;
-        } else {
-            throw new InformationNotFoundException("category with name " + categoryName + " not found.");
-        }
+    public List<Category> getAllCategories() {
+        List<Category> categories = this.categoryRepository.findAll();
+        return categories;
     }
 
     public Category getCategoryById(Long categoryId) {

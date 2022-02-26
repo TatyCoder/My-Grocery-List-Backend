@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/api")    // url -> http://localhost:9092/api
 public class CategoryController {
@@ -19,8 +21,8 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping()
-    public Category getAllCategories() {
+    @GetMapping("/category")   // url -> http://localhost:9092/api/category
+    public List<Category> getAllCategories() {
         System.out.println("calling getAllCategories");
         return categoryService.getAllCategories();
     }
