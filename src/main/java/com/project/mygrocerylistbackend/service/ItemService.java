@@ -26,23 +26,11 @@ public class ItemService {
         this.groceryListService = groceryListService;
     }
 
-//    public Item createItem(Long userId, Long groceryListId, Item itemObject) {
-//    //  This is calling getGroceryList() from GroceryService.
-//        GroceryList groceryList = groceryListService.getGroceryList(userId, groceryListId);
-//        Item item = itemRepository.getItemByGroceryList(groceryList);
-//        if (item == null) {
-//            itemObject.setGroceryList(groceryList);
-//            return itemRepository.save(itemObject);
-//        } else {
-//            throw new InformationExistException("item " + itemObject.getName() + " already exists.");
-//        }
-//    }
-
     public Item createItem(Long userId, Long groceryListId, Item itemObject) {
         // This is calling getGroceryList() from GroceryService.
         GroceryList groceryList = groceryListService.getGroceryList(userId, groceryListId);
         List<Item> items = itemRepository.getItemsByGroceryList(groceryList);
-        // Verify that the grocery list items doesn't already contain the item we're trying to add.
+        // Verify that the grocery list doesn't already contain the item I'm trying to add.
         int count = 0;
         for (Item i : items) {
             if (i.getName().equals(itemObject.getName())){
