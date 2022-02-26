@@ -28,7 +28,6 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @JsonIgnore
     private Category category;
 
     public Item(Long itemId, String name, String description, Integer quantity) {
@@ -96,6 +95,7 @@ public class Item {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
+                ", category=" + category +
                 '}';
     }
 }
