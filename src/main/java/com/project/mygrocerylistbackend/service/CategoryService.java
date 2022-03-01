@@ -39,6 +39,7 @@ public class CategoryService {
         }
     }
 
+    // Do I really need this code below?
     public Category getCategory(Long userId, Long groceryListId, Long itemId, Long categoryId) {
         // This is calling getItem() from ItemService.
         Item item = itemService.getItem(userId, groceryListId, itemId);
