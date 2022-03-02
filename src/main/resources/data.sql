@@ -1,3 +1,4 @@
+DELETE FROM category;
 INSERT INTO category (name) VALUES ('Produce');
 INSERT INTO category (name) VALUES ('Beverages');
 INSERT INTO category (name) VALUES ('Bread & Bakery');
