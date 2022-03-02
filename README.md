@@ -30,7 +30,7 @@ This project consists of:
 
 ![image info](./images/GLDependencies.png)
 
-## My Grocery List App User Stories
+## User Stories
 
 As a person I want to be able to manage my grocery purchases using an application
 * Given that I want to use an application to manage my groceries
@@ -194,3 +194,12 @@ As a user I want to be able to keep as many grocery lists as I want.
   }
 ]
 ```
+## Problems encountered
+The application contains initialization data for the category table. Spring Boot will automatically run sql statements in a data.sql file at start up, but this was not working in Heroku. So I finally solved this problem by following instructions found here: https://www.baeldung.com/spring-boot-data-sql-and-schema-sql
+
+After I deployed my project I was expecting my app to keep totally functioning, but instead my app was behaving differently in localhost and in heroku. I tried to solve this issue following these instructions: https://git.generalassemb.ly/java-interapt-12-6/capstone-project/issues/19#issuecomment-296946
+
+After I deployed my project I had a problem because the messages for the error handling were not showing up anymore as in Postman, so I solved the problem by including this line of code in my application-dev.properties: "server.error.include-message=ALWAYS".
+Solution found here: https://stackoverflow.com/questions/62561211/spring-responsestatusexception-does-not-return-reason
+
+
